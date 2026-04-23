@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniTrello</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <!-- ========== BARRA SUPERIOR ========== -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <span class="logo">MiniTrello</span>
+      <button id="btn-volver" class="btn btn-ghost" style="display:none;">Volver a Tableros</button>
+    </div>
+    <div class="navbar-right">
+      <span id="usuario-actual" class="user-pill">Sin usuario</span>
+      <button id="btn-cambiar-usuario" class="btn btn-ghost">Cambiar usuario</button>
+    </div>
+  </header>
+
+  <!-- ========== VISTA 1: LISTA DE TABLEROS ========== -->
+  <main id="vista-tableros" class="container">
+    <div class="section-header">
+      <h1>Mis tableros</h1>
+      <button id="btn-nuevo-tablero" class="btn btn-primary">+ Nuevo tablero</button>
+    </div>
+    <div id="tableros-grid" class="tableros-grid">
+      <!-- Se llena dinámicamente -->
+    </div>
+  </main>
+
+  <!-- ========== VISTA 2: DETALLE DE TABLERO ========== -->
+  <main id="vista-tablero" class="container-full" style="display:none;">
+    <h2 id="tablero-titulo" class="tablero-titulo"></h2>
+    <div id="listas-container" class="listas-container">
+      <!-- Listas + botón para agregar lista -->
+    </div>
+  </main>
+
+  <!-- ========== MODAL: seleccionar / crear usuario ========== -->
+  <div id="modal-usuario" class="modal-overlay" style="display:none;">
+    <div class="modal">
+      <h3>Selecciona tu usuario</h3>
+      <label>Usuarios existentes</label>
+      <select id="select-usuario"></select>
+      <hr />
+      <h4>O crea uno nuevo</h4>
+      <input type="text" id="input-nuevo-nombre" placeholder="Nombre" />
+      <input type="email" id="input-nuevo-email" placeholder="Email" />
+      <div class="modal-actions">
+        <button id="btn-usar-usuario" class="btn btn-primary">Usar seleccionado</button>
+        <button id="btn-crear-usuario" class="btn btn-secondary">Crear y usar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL: detalle de tarjeta ========== -->
+  <div id="modal-tarjeta" class="modal-overlay" style="display:none;">
+    <div class="modal modal-wide">
+      <button class="modal-close" data-close-modal="modal-tarjeta">Cerrar</button>
+      <input type="text" id="tarjeta-titulo" class="tarjeta-titulo-input" />
+      <p class="tarjeta-meta">En lista: <span id="tarjeta-lista-nombre"></span></p>
+
+      <label>Descripción</label>
+      <textarea id="tarjeta-descripcion" rows="3" placeholder="Añadir una descripción..."></textarea>
+
+      <label>Asignado a</label>
+      <select id="tarjeta-asignado">
+        <option value="">Sin asignar</option>
+      </select>
+
+      <div class="modal-actions">
+        <button id="btn-guardar-tarjeta" class="btn btn-primary">Guardar</button>
+        <button id="btn-borrar-tarjeta" class="btn btn-danger">Eliminar</button>
+      </div>
+
+      <hr />
+
+      <h4>Comentarios</h4>
+      <div class="comentario-nuevo">
+        <textarea id="comentario-texto" rows="2" placeholder="Escribe un comentario..."></textarea>
+        <button id="btn-agregar-comentario" class="btn btn-secondary">Comentar</button>
+      </div>
+      <ul id="comentarios-lista" class="comentarios-lista"></ul>
+    </div>
+  </div>
+
+  <!-- Scripts: orden importante -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
