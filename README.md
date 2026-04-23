@@ -1,127 +1,79 @@
 # Trello Clone
 
-Un clon simplificado de Trello construido con Flask, SQLite y Vanilla JavaScript.
+Clon simplificado de Trello hecho con Flask y SQLite.
 
-## ?? Características
+## Qué hace
 
-- ? Crear tableros, listas y tarjetas
-- ? Asignar usuarios a tarjetas
-- ? Comentarios en tarjetas
-- ? Mover tarjetas entre listas
-- ? Renombrar y actualizar tarjetas
-- ? API REST completa
-- ? CORS habilitado para frontend
-- ? Base de datos SQLite
+- Crear tableros con listas y tarjetas
+- Asignar usuarios a las tarjetas
+- Dejar comentarios en las tarjetas
+- Mover tarjetas entre listas
+- Editar títulos y descripciones
 
-## ?? Requisitos
+## Cómo instalarlo
 
-- Python 3.8+
-- Navegador moderno
+### Backend
 
-## ?? Instalación
-
-### Backend (Flask)
-
-\\\ash
+\\\
 cd backend
 python -m venv venv
-
-# En Windows:
 venv\Scripts\activate
-# En Mac/Linux:
-source venv/bin/activate
-
 pip install -r requirements.txt
 python app.py
 \\\
 
-El servidor corre en **http://localhost:5000**
+Entra a http://localhost:5000
 
-### Frontend
+### Requisitos
 
-El frontend está servido por Flask en la misma URL.
+- Python 3.8+
+- Flask
+- SQLite3 (viene incluido)
 
-## ?? API Endpoints
-
-### Usuarios
-- \GET /api/usuarios\ - Obtener todos los usuarios
-- \POST /api/usuarios\ - Crear usuario
-
-### Tableros
-- \GET /api/tableros\ - Obtener todos los tableros
-- \POST /api/tableros\ - Crear tablero
-- \GET /api/tableros/<id>\ - Obtener tablero con listas y tarjetas
-- \DELETE /api/tableros/<id>\ - Borrar tablero
-
-### Listas
-- \POST /api/listas\ - Crear lista
-- \DELETE /api/listas/<id>\ - Borrar lista
-- \PATCH /api/listas/<id>\ - Actualizar lista
-
-### Tarjetas
-- \POST /api/tarjetas\ - Crear tarjeta
-- \GET /api/tarjetas/<id>\ - Obtener tarjeta
-- \PATCH /api/tarjetas/<id>\ - Actualizar tarjeta (mover, renombrar, asignar)
-- \DELETE /api/tarjetas/<id>\ - Borrar tarjeta
-
-### Comentarios
-- \GET /api/tarjetas/<id>/comentarios\ - Obtener comentarios
-- \POST /api/tarjetas/<id>/comentarios\ - Crear comentario
-- \DELETE /api/comentarios/<id>\ - Borrar comentario
-
-## ?? Estructura del Proyecto
+## Estructura
 
 \\\
-TrelloClone/
-+-- backend/
-¦   +-- app.py                  # Aplicación Flask principal
-¦   +-- requirements.txt         # Dependencias Python
-¦   +-- trello.db               # Base de datos SQLite (generada automáticamente)
-¦
-+-- frontend/
-¦   +-- index.html              # HTML principal
-¦   +-- js/
-¦   ¦   +-- app.js              # Lógica principal del frontend
-¦   ¦   +-- api.js              # Cliente HTTP para la API
-¦   +-- css/
-¦       +-- styles.css          # Estilos CSS
-¦
-+-- .gitignore
-+-- README.md
+backend/
+  app.py              - Servidor Flask
+  trello.db           - Base de datos
+  requirements.txt    - Dependencias
+
+frontend/
+  index.html
+  js/app.js
+  js/api.js
+  css/styles.css
 \\\
 
-## ?? Cómo Usar
+## Endpoints disponibles
 
-1. Instala las dependencias: \pip install -r requirements.txt\
-2. Ejecuta el backend: \python app.py\
-3. Abre http://localhost:5000 en tu navegador
-4. ¡Crea tableros, listas y tarjetas!
+**Usuarios**
+- GET /api/usuarios
+- POST /api/usuarios
 
-## ??? Desarrollo
+**Tableros**
+- GET /api/tableros
+- POST /api/tableros
+- GET /api/tableros/<id>
+- DELETE /api/tableros/<id>
 
-- El backend recarga automáticamente cuando cambias código (debug=True)
-- Los cambios en frontend requieren refresh en el navegador
+**Listas**
+- POST /api/listas
+- DELETE /api/listas/<id>
 
-## ?? Ejemplo de Uso
+**Tarjetas**
+- POST /api/tarjetas
+- GET /api/tarjetas/<id>
+- PATCH /api/tarjetas/<id>
+- DELETE /api/tarjetas/<id>
 
-### Crear un usuario
-\\\ash
-curl -X POST http://localhost:5000/api/usuarios \
-  -H "Content-Type: application/json" \
-  -d '{"nombre": "Juan", "email": "juan@example.com"}'
-\\\
+**Comentarios**
+- GET /api/tarjetas/<id>/comentarios
+- POST /api/tarjetas/<id>/comentarios
+- DELETE /api/comentarios/<id>
 
-### Crear un tablero
-\\\ash
-curl -X POST http://localhost:5000/api/tableros \
-  -H "Content-Type: application/json" \
-  -d '{"nombre": "Mi Proyecto"}'
-\\\
+## Notas
 
-## ?? Licencia
-
-MIT License
-
-## ????? Autor
-
-Jorge Álvarez - [GitHub](https://github.com/Jorgealvarezzz)
+- El servidor se reinicia automáticamente en desarrollo
+- La base de datos se crea sola al iniciar
+- CORS está habilitado para el frontend
